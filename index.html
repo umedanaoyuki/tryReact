@@ -15,32 +15,33 @@
 
     <script type="text/babel">
 
-      const InputText = () => {
-        const [inputTextValue, setInputTextValue] = React.useState("");
+      const INITIAL_COUNT =0;
+      
+      const SampleComponent = () => {
 
-        const [text, setText] = React.useState("JavaScript");
+        const [count, setCount] = React.useState(INITIAL_COUNT);
 
-        const handleChange = (event) => {
-          return setInputTextValue(event.target.value);
+        const countIncrement = () => {
+          setCount((prevCount) => prevCount + 1);
         };
 
-        const handleClick = () => {
-          setText(inputTextValue);
-          setInputTextValue("");
+        const countReset = () => {
+          setCount(INITIAL_COUNT);
         };
+          
 
         return (
           <>
-            <h1>I Love {text}</h1>
-            <input type="text" value={inputTextValue} onChange={handleChange} />
-            <input type="button" value="入力" onClick={handleClick} />
+            <p>現在のカウント数: {count}</p>
+            <button onClick={countIncrement}>+1 ボタン</button>
+            <button onClick={countReset}>リセット</button>
           </>
         );
-      };
+      }
 
       const domContainer = document.querySelector("#root");
       //古い書き方（react 17）
-      ReactDOM.render(<InputText />, domContainer);
+      ReactDOM.render(<SampleComponent />, domContainer);
     </script>
   </body>
 </html>
