@@ -15,15 +15,38 @@
 
     <script type="text/babel">
       
-      const App = () => {
-          return(
-            <p>テスト</p>
-          );
+      const LogoutButton = (props) => {
+        return(
+          <button onClick={props.toggleIsLoggedIn}>ログアウト</button>
+        );
       };
+
+
+      const LogInButton = (props) => {
+        return(
+          <button onClick={props.toggleIsLoggedIn}>ログイン</button>
+        );
+      };
+
+
+        const LoginControl = () => {
+          const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+
+          const toggleIsLoggedIn = () => {
+            setIsLoggedIn(!isLoggedIn);
+          };
+            
+          if (isLoggedIn) {
+            return <LogoutButton toggleIsLoggedIn={toggleIsLoggedIn}/>;
+          } 
+          return ( 
+            <LogInButton toggleIsLoggedIn={toggleIsLoggedIn}/>);
+          };
 
       const domContainer = document.querySelector("#root");
       //古い書き方（react 17）
-      ReactDOM.render(<App />, domContainer);
+      ReactDOM.render(<LoginControl />, domContainer);
+        
     </script>
   </body>
 </html>
