@@ -11,44 +11,19 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
-    <div id="likeButtonContainer"></div>
+    <div id="root"></div>
 
     <script type="text/babel">
-      //Component
-      const LikeButton = () => {
-        const [liked, setLiked] = React.useState(false);
-
-        const toggleLiked = () => {
-          return setLiked(!liked);
-        };
-
-        return (
-          <button className="likeButton" onClick={toggleLiked}>
-            {liked ? "いいね済" : "いいね前"}
-          </button>
-        );
+      
+      const App = () => {
+          return(
+            <p>テスト</p>
+          );
       };
 
-      //NameInputComponent
-      const NameInputComponent = () => {
-        const [name, setName] = React.useState("初期値の名前");
-
-        const handleChangeText = (event) => {
-          setName(event.target.value);
-        };
-
-        return (
-          <>
-            <input type="text" onChange={handleChangeText}></input>
-            <p>こんにちは,{name}さん</p>
-          </>
-        );
-      };
-
-      const domContainer = document.querySelector("#likeButtonContainer");
-
+      const domContainer = document.querySelector("#root");
       //古い書き方（react 17）
-      ReactDOM.render(<NameInputComponent />, domContainer);
+      ReactDOM.render(<App />, domContainer);
     </script>
   </body>
 </html>
