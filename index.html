@@ -14,39 +14,33 @@
     <div id="root"></div>
 
     <script type="text/babel">
-      
-      const LogoutButton = (props) => {
-        return(
-          <button onClick={props.toggleIsLoggedIn}>ログアウト</button>
+
+      const InputText = () => {
+        const [inputTextValue, setInputTextValue] = React.useState("");
+
+        const [text, setText] = React.useState("JavaScript");
+
+        const handleChange = (event) => {
+          return setInputTextValue(event.target.value);
+        };
+
+        const handleClick = () => {
+          setText(inputTextValue);
+          setInputTextValue("");
+        };
+
+        return (
+          <>
+            <h1>I Love {text}</h1>
+            <input type="text" value={inputTextValue} onChange={handleChange} />
+            <input type="button" value="入力" onClick={handleClick} />
+          </>
         );
       };
-
-
-      const LogInButton = (props) => {
-        return(
-          <button onClick={props.toggleIsLoggedIn}>ログイン</button>
-        );
-      };
-
-
-        const LoginControl = () => {
-          const [isLoggedIn, setIsLoggedIn] = React.useState(true);
-
-          const toggleIsLoggedIn = () => {
-            setIsLoggedIn(!isLoggedIn);
-          };
-            
-          if (isLoggedIn) {
-            return <LogoutButton toggleIsLoggedIn={toggleIsLoggedIn}/>;
-          } 
-          return ( 
-            <LogInButton toggleIsLoggedIn={toggleIsLoggedIn}/>);
-          };
 
       const domContainer = document.querySelector("#root");
       //古い書き方（react 17）
-      ReactDOM.render(<LoginControl />, domContainer);
-        
+      ReactDOM.render(<InputText />, domContainer);
     </script>
   </body>
 </html>
